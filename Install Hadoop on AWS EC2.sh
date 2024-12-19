@@ -1,4 +1,4 @@
-HADOOP INSTALLATION - EC2 (LINUX)
+<h1>HADOOP INSTALLATION - EC2 (LINUX)</h1>
 
 # Update the system packages using yum (Amazon Linux package manager)
 sudo yum update -y
