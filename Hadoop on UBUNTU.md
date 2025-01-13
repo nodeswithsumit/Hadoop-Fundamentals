@@ -96,6 +96,9 @@ Hadoop is an open-source framework for distributed storage and processing of big
    ```bash
    ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
    ```
+   ```bash
+   cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+   ```
 
    ```bash
    chmod 0600 ~/.ssh/id_rsa.pub
