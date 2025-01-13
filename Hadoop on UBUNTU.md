@@ -75,9 +75,16 @@ Hadoop is an open-source framework for distributed storage and processing of big
 1. **Edit environment variables:**
    Open the `.bashrc` file and add the following lines:
    ```bash
-   export HADOOP_HOME=/usr/local/hadoop
-   export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
-   export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+   export HADOOP_HOME=/Users/sumitkumarshukla/hadoop-3.4.0/
+   export HADOOP_INSTALL=$HADOOP_HOME
+   export HADOOP_MAPRED_HOME=$HADOOP_HOME
+   export HADOOP_COMMON_HOME=$HADOOP_HOME
+   export HADOOP_HDFS_HOME=$HADOOP_HOME
+   export HADOOP_YARN_HOME=$HADOOP_HOME
+   export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+   export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+   export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/nativ"
+   export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop/
    ```
    Apply changes:
    ```bash
