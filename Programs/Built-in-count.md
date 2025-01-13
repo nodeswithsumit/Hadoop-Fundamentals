@@ -2,11 +2,10 @@
 
 1. Prepare Input Data Upload input data to HDFS:
 
-    ``bash
-
-    hdfs dfs -mkdir /wordcount/input
-    hdfs dfs -put input.txt /wordcount/input/
-    ```
+ ```bash
+ hdfs dfs -mkdir /wordcount/input
+ hdfs dfs -put input.txt /wordcount/input/
+ ```
 
 2. Run a Built-in WordCount Example Hadoop comes with example JARs:
 
