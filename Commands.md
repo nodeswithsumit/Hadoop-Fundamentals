@@ -7,7 +7,9 @@
 **1. Prerequisites**
 
     * **Java:** Install Java 8 or 11. 
+
         * Verify installation:
+        
             ```bash
             java -version 
             ```
