@@ -6,19 +6,21 @@
 
 **1. Prerequisites**
 
-    * **Java:** Install Java 8 or 11. 
+  * **Java:** Install Java 8 or 11.
 
-        * Verify installation:
+     * Verify installation:
+          
+       ```bash
+        java -version 
+       ```
+
+  * **Hadoop:** Download and extract the Hadoop binary distribution (preferably the latest stable version).
         
-            ```bash
-            java -version 
-            ```
-
-    * **Hadoop:** Download and extract the Hadoop binary distribution (preferably the latest stable version).
-        * Verify installation:
-            ```bash
-            hadoop version 
-            ```
+    * Verify installation:
+          
+       ```bash
+        hadoop version 
+       ```
 
 ## HDFS Commands
 
