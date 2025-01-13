@@ -99,10 +99,14 @@ Hadoop is an open-source framework for distributed storage and processing of big
    Add:
    ```xml
    <configuration>
-       <property>
-           <name>fs.defaultFS</name>
-           <value>hdfs://localhost:9000</value>
-       </property>
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/home/users-1/hdfs/tmp/</value>
+    </property>
+    <property>
+        <name>fs.default.name</name>
+        <value>hdfs://127.0.0.1:9000</value>
+    </property>
    </configuration>
    ```
 
@@ -113,29 +117,67 @@ Hadoop is an open-source framework for distributed storage and processing of big
    Add:
    ```xml
    <configuration>
-       <property>
-           <name>dfs.replication</name>
-           <value>1</value>
-       </property>
-       <property>
-           <name>dfs.namenode.name.dir</name>
-           <value>file:///usr/local/hadoop/data/namenode</value>
-       </property>
-       <property>
-           <name>dfs.datanode.data.dir</name>
-           <value>file:///usr/local/hadoop/data/datanode</value>
-       </property>
+     <property>
+         <name>dfs.data.dir</name>
+         <value>/home/users-1/hdfs/namenode</value>
+     </property>
+     <property>
+         <name>dfs.data.dir</name>
+         <value>/home/users-1/hdfs/datanode</value>
+     </property>
+     <property>
+         <name>dfs.replication</name>
+         <value>1</value>
+     </property>
    </configuration>
    ```
 
-4. **Create directories for NameNode and DataNode:**
+
+4. **Configure mapred-site.xml:**
+   Edit the `mapred-site.xml` file:
    ```bash
-   sudo mkdir -p /usr/local/hadoop/data/namenode
-   sudo mkdir -p /usr/local/hadoop/data/datanode
-   sudo chown -R hadoop:hadoop /usr/local/hadoop/data
+   nano $HADOOP_HOME/etc/hadoop/mapred-site.xml
+   ```
+   Add:
+   ```xml
+   <configuration> 
+     <property> 
+       <name>mapreduce.framework.name</name> 
+       <value>yarn</value> 
+     </property> 
+   </configuration>
    ```
 
----
+5. **Configure yarn-site.xml:**
+   Edit the `yarn-site.xml` file:
+   ```bash
+   nano $HADOOP_HOME/etc/hadoop/yarn-site.xml
+   ```
+   Add:
+   ```xml
+   <configuration>
+     <property>
+       <name>yarn.nodemanager.aux-services</name>
+       <value>mapreduce_shuffle</value>
+     </property>
+     <property>
+       <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+       <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+     </property>
+     <property>
+       <name>yarn.resourcemanager.hostname</name>
+       <value>127.0.0.1</value>
+     </property>
+     <property>
+       <name>yarn.acl.enable</name>
+       <value>0</value>
+     </property>
+     <property>
+       <name>yarn.nodemanager.env-whitelist</name>   
+       <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PERPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
+     </property>
+   </configuration>
+   ```
 
 **5. Format the NameNode**
 
