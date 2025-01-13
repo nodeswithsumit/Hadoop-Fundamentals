@@ -16,9 +16,10 @@
 2. **Basic File Operations**
 
     * **List files in HDFS:**
-    ```bash
-    hdfs dfs -ls /
-    ```
+
+        ```bash
+        hdfs dfs -ls /
+        ```
     * **Create a directory in HDFS:**
     ```bash
     hdfs dfs -mkdir /user/data
