@@ -91,7 +91,20 @@ Hadoop is an open-source framework for distributed storage and processing of big
    source ~/.bashrc
    ```
 
-2. **Configure core-site.xml:**
+
+   **key generation**
+   ```bash
+   ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+   ```
+
+   ```bash
+   chmod 0600 ~/.ssh/id_rsa.pub
+   ```
+   ```bash
+   ssh localhost
+   ```
+   
+3. **Configure core-site.xml:**
    Edit the `core-site.xml` file:
    ```bash
    nano $HADOOP_HOME/etc/hadoop/core-site.xml
@@ -110,7 +123,7 @@ Hadoop is an open-source framework for distributed storage and processing of big
    </configuration>
    ```
 
-3. **Configure hdfs-site.xml:**
+4. **Configure hdfs-site.xml:**
    ```bash
    nano $HADOOP_HOME/etc/hadoop/hdfs-site.xml
    ```
@@ -133,7 +146,7 @@ Hadoop is an open-source framework for distributed storage and processing of big
    ```
 
 
-4. **Configure mapred-site.xml:**
+5. **Configure mapred-site.xml:**
    Edit the `mapred-site.xml` file:
    ```bash
    nano $HADOOP_HOME/etc/hadoop/mapred-site.xml
@@ -148,7 +161,7 @@ Hadoop is an open-source framework for distributed storage and processing of big
    </configuration>
    ```
 
-5. **Configure yarn-site.xml:**
+6. **Configure yarn-site.xml:**
    Edit the `yarn-site.xml` file:
    ```bash
    nano $HADOOP_HOME/etc/hadoop/yarn-site.xml
