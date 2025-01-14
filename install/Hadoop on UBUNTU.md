@@ -75,7 +75,13 @@ Hadoop is an open-source framework for distributed storage and processing of big
 1. **Edit environment variables:**
    Open the `.bashrc` file and add the following lines:
    ```bash
-   export HADOOP_HOME=/Users/sumitkumarshukla/hadoop-3.4.0/
+
+   # Set JAVA_HOME
+   export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+   #Add JAVA_HOME/bin to the PATH
+   export PATH=$JAVA_HOME/bin:$PATH
+   
+   export HADOOP_HOME=/home/user-1/hadoop-3.4.0/   #replace the hadoop version as per your version and the location as well if needed.
    export HADOOP_INSTALL=$HADOOP_HOME
    export HADOOP_MAPRED_HOME=$HADOOP_HOME
    export HADOOP_COMMON_HOME=$HADOOP_HOME
@@ -117,7 +123,7 @@ Hadoop is an open-source framework for distributed storage and processing of big
    <configuration>
     <property>
         <name>hadoop.tmp.dir</name>
-        <value>/home/users-1/hdfs/tmp/</value>
+        <value>/home/user-1/hdfs/tmp/</value>   # replace `/home/user-1` with the location you have if required.
     </property>
     <property>
         <name>fs.default.name</name>
@@ -135,11 +141,11 @@ Hadoop is an open-source framework for distributed storage and processing of big
    <configuration>
      <property>
          <name>dfs.data.dir</name>
-         <value>/home/users-1/hdfs/namenode</value>
+         <value>/home/user-1/hdfs/namenode</value>      # replace `/home/user-1` with the location you have if required.
      </property>
      <property>
          <name>dfs.data.dir</name>
-         <value>/home/users-1/hdfs/datanode</value>
+         <value>/home/user-1/hdfs/datanode</value>      # replace `/home/user-1` with the location you have if required.
      </property>
      <property>
          <name>dfs.replication</name>
@@ -206,6 +212,12 @@ hdfs namenode -format
 
 **6. Start Hadoop Services**
 
+You can diractly run all to check instead of doing it individually but if needed, you can can follow it individual wise as well.
+
+```bash
+start-all.sh      # remember to stop you will write stop-all.sh
+```
+
 1. **Start NameNode and DataNode:**
    ```bash
    start-dfs.sh
@@ -222,31 +234,6 @@ hdfs namenode -format
    - YARN: `http://localhost:8088`
 
 ---
-
-**7. Running a Test Job**
-
-1. **Create a directory in HDFS:**
-   ```bash
-   hdfs dfs -mkdir /test
-   ```
-
-2. **List directories in HDFS:**
-   ```bash
-   hdfs dfs -ls /
-   ```
-
-3. **Upload a file to HDFS:**
-   ```bash
-   hdfs dfs -put /path/to/local/file /test
-   ```
-
-4. **List files in HDFS directory:**
-   ```bash
-   hdfs dfs -ls /test
-   ```
-
----
-
 **Conclusion**
 
 You have successfully set up Hadoop on Ubuntu. You can now start leveraging Hadoop’s capabilities for big data storage and processing.
