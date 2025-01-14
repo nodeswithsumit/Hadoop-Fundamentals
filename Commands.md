@@ -35,7 +35,8 @@
 * **Create a directory in HDFS:**
 
     ```bash
-    hdfs dfs -mkdir /user/data 
+    hdfs dfs -mkdir /user
+     hdfs dfs -mkdir /user/data 
     ```
 
 * **Upload a file to HDFS:**
