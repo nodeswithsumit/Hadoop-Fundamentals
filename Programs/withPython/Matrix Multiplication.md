@@ -6,7 +6,7 @@ Matrix multiplication can be implemented using the MapReduce programming model. 
 
 Given two matrices:
 
-```bash
+```math
 **A** of size M×N  
 **B** of size N×P  
 
