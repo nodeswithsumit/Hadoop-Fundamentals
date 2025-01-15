@@ -2,6 +2,51 @@
 
 Using Python, we can implement the same logic for finding the maximum temperature per year using the Hadoop Streaming API for MapReduce. Below is how you can approach this problem with a Python MapReduce program.
 
+## Prepare Folder Structure
+
+```graphql
+MapReducePython/
+├── input/
+│   └── temperature_data.txt   # Input data file
+├── scripts/
+│   ├── mapper.py              # Mapper script
+│   ├── reducer.py             # Reducer script
+├── output/                    # (Optional) Local output folder for testing
+```
+
+## Steps to Set Up in VS Code
+
+### Create the Project Folder:
+
+* Open VS Code.
+* Create a new folder named MapReducePython or any name you prefer.
+* Open this folder in VS Code (File > Open Folder).
+
+### Organize the Files:
+
+* Inside the project folder, create the subdirectories input, scripts, and output (optional).
+* Place the input data file `(temperature_data.txt)` in the input folder.
+* Write your `mapper.py` and `reducer.py` scripts and save them in the `scripts` folder.
+
+## Key Points to Check: 
+1. Directory Structure: Ensure that you are executing commands from the `MapReducePython/` root directory where the folder structure is as described above.
+2. Permissions: Make sure both `mapper.py` and `reducer.py` are exectutable:
+
+```bash
+chmod +x scripts/mapper.py
+chmod +x scripts/reducer.py
+chmod +x scripts (optional)
+```
+
+### Test Locally in Folder Terminal
+
+Run the following command to test your program locally:
+
+```bash
+cat input/temperature_data.txt | python3 scripts/mapper.py | sort | python3 scripts/reducer.py
+```
+
+
 ## Write the Mapper Script
 The mapper will read the input line by line, extract the year and temperature, and output them in the format year \t temperature.
 
@@ -90,8 +135,8 @@ To run this program using Hadoop Streaming, follow these steps:
 
 **Step 1: Upload Input Data to HDFS**
 ```bash
-hdfs dfs -mkdir /user/hadoop/input
-hdfs dfs -put temperature_data.txt /user/hadoop/input/
+hdfs dfs -mkdir /user/mapreducetemp/input
+hdfs dfs -put input/temperature_data.txt /user/mapreducetemp/input/
 ```
 
 **Step 2: Execute the Hadoop Streaming Job**
@@ -99,23 +144,26 @@ Use the Hadoop Streaming API to run the Python scripts:
 
 ```bash
 hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-*.jar \
-  -input /user/hadoop/input/temperature_data.txt \
-  -output /user/hadoop/output \
+  -input /user/mapreducetemp/input/temperature_data.txt \
+  -output /user/mapreducetemp/output \
   -mapper "python3 mapper.py" \
-  -reducer "python3 reducer.py"
+  -reducer "python3 reducer.py"\
+  -file scripts/mapper.py \
+  -file scripts/reducer.py
 ```
 
 ## Step 3: View the Results
 After the job completes, view the output in HDFS:
 
 ```bash
-hdfs dfs -cat /user/hadoop/output/part-00000
+hdfs dfs -cat /user/mapreducetemp/output/part-00000
 ```
 
 This will display
 
 ```yaml
-This will display:
+2021	22
+2022	27
 ```
 
 ## Explanation of Steps:
