@@ -28,24 +28,6 @@ MapReducePython/
 * Place the input data file `(temperature_data.txt)` in the input folder.
 * Write your `mapper.py` and `reducer.py` scripts and save them in the `scripts` folder.
 
-## Key Points to Check: 
-1. Directory Structure: Ensure that you are executing commands from the `MapReducePython/` root directory where the folder structure is as described above.
-2. Permissions: Make sure both `mapper.py` and `reducer.py` are exectutable:
-
-```bash
-chmod +x scripts/mapper.py
-chmod +x scripts/reducer.py
-chmod +x scripts (optional)
-```
-
-### Test Locally in Folder Terminal
-
-Run the following command to test your program locally:
-
-```bash
-cat input/temperature_data.txt | python3 scripts/mapper.py | sort | python3 scripts/reducer.py
-```
-
 
 ## Write the Mapper Script
 The mapper will read the input line by line, extract the year and temperature, and output them in the format year \t temperature.
@@ -117,11 +99,22 @@ Create a file named <code>temperature_data.txt</code> with sample input data:
 2022,01,02,27
 ```
 
-## Test Locally
-Test the program locally using standard input and output:
+## Key Points to Check: 
+1. Directory Structure: Ensure that you are executing commands from the `MapReducePython/` root directory where the folder structure is as described above.
+2. Permissions: Make sure both `mapper.py` and `reducer.py` are exectutable:
 
 ```bash
-cat temperature_data.txt | python mapper.py | sort | python reducer.py
+chmod +x scripts/mapper.py
+chmod +x scripts/reducer.py
+chmod +x scripts (optional)
+```
+
+### Test Locally in Folder Terminal
+
+Run the following command to test your program locally:
+
+```bash
+cat input/temperature_data.txt | python3 scripts/mapper.py | sort | python3 scripts/reducer.py
 ```
 
 You should see the output
