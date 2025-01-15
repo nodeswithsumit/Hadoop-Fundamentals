@@ -1,6 +1,9 @@
 # Develop a MapReduce program to find the maximum temperature in each year
 
-**To develop a MapReduce program to find the maximum temperature in each year, we will implement a program that processes weather data, which could be in the format:**
+To develop a MapReduce program to find the maximum temperature in each year, we will implement a program that processes weather data, which could be in the format:**
+
+## Set Up Hadoop Input Data
+You need to upload the input data to HDFS. For this example, assume the data looks like this (temperature.csv):
 
 ```yaml
 Year, Month, Day, Temperature
@@ -9,6 +12,33 @@ Year, Month, Day, Temperature
 2022, 01, 01, 25
 2022, 01, 02, 27
 ```
+
+To upload the data to HDFS:
+
+```bash
+hdfs dfs -mkdir /user/hadoop/input
+hdfs dfs -put /path/to/temperature.csv /user/hadoop/input/
+```
+
+Check that the file is uploaded:
+```bash
+hdfs dfs -ls /user/hadoop/input/
+```
+
+## Project Structure
+
+Create a directory for your project (e.g., MaxTemperature) and create a new file for the MaxTemperature program.
+
+```css
+MaxTemperature/
+├── src/
+│   └── MaxTemperature.java
+├── lib/
+└── build.sh
+```
+* MaxTemperature.java: Write the MapReduce code in a file called MaxTemperature.java (as explained in the first answer).
+
+_________________
 
 The objective is to find the maximum temperature for each year. Here's the MapReduce code in Java:
 
@@ -136,4 +166,10 @@ To run this program, you will need to package it into a .jar file and run it on 
 hadoop jar MaxTemperature.jar MaxTemperature /input/data /output
 ```
 This will process the data in <code>/input/data</code> and save the results in the <code>/output</code> directory.
+
+## View the Results
+
+```bash
+hdfs dfs -cat /user/hadoop/output/part-r-00000
+```
 
