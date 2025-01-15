@@ -2,19 +2,18 @@
 import sys
 
 for line in sys.stdin:
-    # Remove leading and trailing whitespace
     line = line.strip()
+    matrix, row, col, value = line.split(',')
 
-    # Split the line into fields
-    fields = line.split(',')
+    row = int(row)
+    col = int(col)
+    value = float(value)
 
-    # Ensure we have exactly four fields
-    if len(fields) == 4:
-        year = fields[0].strip()  # First column is the year
-        try:
-            temperature = int(fields[3].strip())  # Fourth column is the temperature
-            # Emit the year and temperature
-            print(f"{year}\t{temperature}")
-        except ValueError:
-            # Skip rows with invalid temperature values
-            continue
+    if matrix == 'A':
+        # Emit all (i, k) for A[i][j]
+        for k in range(2):  # Replace '2' with the number of columns in B
+            print(f"{row},{k}\tA,{col},{value}")
+    elif matrix == 'B':
+        # Emit all (i, k) for B[j][k]
+        for i in range(2):  # Replace '2' with the number of rows in A
+            print(f"{i},{col}\tB,{row},{value}")

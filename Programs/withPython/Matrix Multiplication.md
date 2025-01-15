@@ -214,18 +214,21 @@ This will display
 1,1	50.0
 ```
 
+
 ## Explanation of Steps:
 
 **Mapper:**
 
-  Emits the StudentID and their score as key value pair. 
+  For each element in matrix \( A \) or \( B \), the mapper emits intermediate key-value pairs:
+  - For \( A[i][j] \), it emits all possible \( (i, k) \) pairs where \( k \) is a column index in \( B \).
+  - For \( B[j][k] \), it emits all possible \( (i, k) \) pairs where \( i \) is a row index in \( A \).
+  
+  These intermediate pairs ensure that corresponding elements from \( A \) and \( B \) are grouped together for multiplication.
 
 **Reducer:**
 
-  Calculate the total score for each student and assigns a grade.
-  
-**Hadoop Streaming:**
-  
-  Allows you to use any language (like Python) to implement the mapper and reducer, instead of writing Java programs.
+  The reducer processes each \( (i, k) \) key and sums up the products of corresponding elements \( A[i][j] \) and \( B[j][k] \) for all valid \( j \). This calculates the value of the result matrix \( C[i][k] \).
 
-This Python-based approach simplifies the development process while leveraging Hadoop's distributed processing capabilities!
+**Hadoop Streaming:**
+
+  Enables the use of Python for both the mapper and reducer, eliminating the need to write complex Java code. This Python-based approach simplifies implementation while still leveraging Hadoop's powerful distributed processing for large-scale matrix computations!

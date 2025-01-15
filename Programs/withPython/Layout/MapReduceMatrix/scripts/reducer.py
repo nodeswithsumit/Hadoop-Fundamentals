@@ -1,29 +1,40 @@
 # reducer.py
 import sys
+from collections import defaultdict
 
-current_year = None
-max_temperature = None
+current_key = None
+values = defaultdict(list)
 
 for line in sys.stdin:
-    # Remove leading and trailing whitespace
     line = line.strip()
+    key, value = line.split('\t')
+    matrix, index, element_value = value.split(',')
 
-    # Parse the input from the mapper
-    year, temperature = line.split('\t', 1)
-    temperature = int(temperature)
+    index = int(index)
+    element_value = float(element_value)
 
-    # If we're processing a new year
-    if current_year != year:
-        if current_year is not None:
-            # Output the max temperature for the previous year
-            print(f"{current_year}\t{max_temperature}")
-        # Reset variables for the new year
-        current_year = year
-        max_temperature = temperature
+    if current_key == key:
+        values[matrix].append((index, element_value))
     else:
-        # Update the max temperature for the current year
-        max_temperature = max(max_temperature, temperature)
+        if current_key is not None:
+            # Calculate partial sum for the previous key
+            result = 0
+            for a_index, a_value in values['A']:
+                for b_index, b_value in values['B']:
+                    if a_index == b_index:
+                        result += a_value * b_value
+            print(f"{current_key}\t{result}")
 
-# Output the max temperature for the last year
-if current_year is not None:
-    print(f"{current_year}\t{max_temperature}")
+        # Reset for the new key
+        current_key = key
+        values = defaultdict(list)
+        values[matrix].append((index, element_value))
+
+# Final key
+if current_key is not None:
+    result = 0
+    for a_index, a_value in values['A']:
+        for b_index, b_value in values['B']:
+            if a_index == b_index:
+                result += a_value * b_value
+    print(f"{current_key}\t{result}")
