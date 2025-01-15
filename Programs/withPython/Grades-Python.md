@@ -200,11 +200,11 @@ This will display
 
 **Mapper:**
 
-  Extracts the year and temperature and emits them as key-value pairs (year \t temperature).
+  Emits the StudentID and their score as key value pair. 
 
 **Reducer:**
 
-  Groups data by year and calculates the maximum temperature for each year.
+  Calculate the total score for each student and assigns a grade.
   
 **Hadoop Streaming:**
   
