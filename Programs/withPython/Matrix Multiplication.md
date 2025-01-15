@@ -25,7 +25,7 @@ MatrixName, RowIndex, ColumnIndex, Value
 
 ## Example
 
-```bash
+```math
 Given matrices:
 
 \[ A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \]  
