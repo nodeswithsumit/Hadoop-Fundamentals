@@ -135,5 +135,5 @@ To run this program, you will need to package it into a .jar file and run it on 
 ```bash
 hadoop jar MaxTemperature.jar MaxTemperature /input/data /output
 ```
-This will process the data in <code>/input/data</code> and save the results in the /output directory.
+This will process the data in <code>/input/data</code> and save the results in the <code>/output</code> directory.
 
