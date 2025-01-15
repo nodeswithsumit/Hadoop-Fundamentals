@@ -1,0 +1,6 @@
+1,John,Math,85
+1,John,Science,78
+2,Jane,Math,92
+2,Jane,Science,88
+3,Tom,Math,55
+3,Tom,Science,60
